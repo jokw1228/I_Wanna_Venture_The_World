@@ -1,0 +1,63 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
+[ext_resource path="res://images/player/idle_0.png" type="Texture" id=2]
+[ext_resource path="res://images/player/idle_1.png" type="Texture" id=3]
+[ext_resource path="res://images/player/idle_2.png" type="Texture" id=4]
+[ext_resource path="res://images/player/idle_3.png" type="Texture" id=5]
+[ext_resource path="res://images/player/jump_0.png" type="Texture" id=6]
+[ext_resource path="res://images/player/jump_1.png" type="Texture" id=7]
+[ext_resource path="res://images/player/fall_0.png" type="Texture" id=8]
+[ext_resource path="res://images/player/fall_1.png" type="Texture" id=9]
+[ext_resource path="res://images/player/running_0.png" type="Texture" id=10]
+[ext_resource path="res://images/player/running_1.png" type="Texture" id=11]
+[ext_resource path="res://images/player/running_2.png" type="Texture" id=12]
+[ext_resource path="res://images/player/running_3.png" type="Texture" id=13]
+[ext_resource path="res://scenes/player/BloodEmitter/BloodEmitter.tscn" type="PackedScene" id=14]
+[ext_resource path="res://audio/sound effect/jump.wav" type="AudioStream" id=15]
+[ext_resource path="res://audio/sound effect/d_jump.wav" type="AudioStream" id=16]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "fall",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "jump",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6, 10 )
+
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
+script = ExtResource( 1 )
+BloodEmitter = ExtResource( 14 )
+
+[node name="PlayerSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 6 )
+shape = SubResource( 2 )
+
+[node name="AudioJump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+
+[node name="AudioDJump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 16 )

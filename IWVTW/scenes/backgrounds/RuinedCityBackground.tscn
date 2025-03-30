@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://images/backgrounds/City Background.png" type="Texture" id=1]
+[ext_resource path="res://images/backgrounds/City Foreground.png" type="Texture" id=2]
+[ext_resource path="res://images/backgrounds/Sky.png" type="Texture" id=3]
+
+[node name="RuinedCityBackground" type="Node"]
+
+[node name="ParallaxBackground1" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 1, 0 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground1"]
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer"]
+scale = Vector2( 2.13333, 0.72 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 0.25, 0 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground2/ParallaxLayer"]
+scale = Vector2( 0.914286, 0.72 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ParallaxBackground3" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 0.5, 0 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground3"]
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground3/ParallaxLayer"]
+scale = Vector2( 0.914286, 0.72 )
+texture = ExtResource( 2 )
+centered = false

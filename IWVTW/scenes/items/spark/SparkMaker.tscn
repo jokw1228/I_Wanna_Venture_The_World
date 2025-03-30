@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://images/items/spark/spark_maker.png" type="Texture" id=1]
+[ext_resource path="res://scenes/items/spark/SparkMaker.gd" type="Script" id=2]
+[ext_resource path="res://scenes/items/spark/Spark.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/items/spark/SparkMakerTrash.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/world/TextPS2P_item.tscn" type="PackedScene" id=5]
+[ext_resource path="res://images/items/spark/spark_range.png" type="Texture" id=6]
+
+[node name="SparkMaker" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+Spark = ExtResource( 3 )
+SparkMakerTrash = ExtResource( 4 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_left = -48.0
+margin_top = -48.0
+margin_right = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextPS2P_item" parent="CenterContainer" instance=ExtResource( 5 )]
+margin_left = 48.0
+margin_top = 16.0
+margin_right = 48.0
+margin_bottom = 32.0
+
+[node name="SparkRange" type="Sprite" parent="."]
+texture = ExtResource( 6 )

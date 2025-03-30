@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://images/logo/title.png" type="Texture" id=1]
+[ext_resource path="res://images/fonts/PressStart2P-vaV7.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/rooms/room_title/SelectCenterContainer.gd" type="Script" id=3]
+[ext_resource path="res://scenes/rooms/levels/tutorial/RoomTutorial.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/rooms/room_title/RoomOption.tscn" type="PackedScene" id=5]
+[ext_resource path="res://audio/sound effect/select_pressed.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/sound effect/select.wav" type="AudioStream" id=7]
+
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_space = -16
+font_data = ExtResource( 2 )
+
+[node name="RoomTitle" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 576.0
+color = Color( 0.0666667, 0.796078, 0.870588, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 576.0
+custom_constants/margin_top = 80
+custom_constants/margin_bottom = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_top = 80.0
+margin_right = 1024.0
+margin_bottom = 496.0
+custom_constants/separation = 16
+
+[node name="TitleCenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 244.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/TitleCenterContainer"]
+margin_left = 228.0
+margin_right = 795.0
+margin_bottom = 244.0
+texture = ExtResource( 1 )
+
+[node name="SelectCenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 260.0
+margin_right = 1024.0
+margin_bottom = 416.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+go_to_scene = ExtResource( 4 )
+room_option = ExtResource( 5 )
+
+[node name="presskey" type="Label" parent="MarginContainer/VBoxContainer/SelectCenterContainer"]
+margin_left = 248.0
+margin_top = 62.0
+margin_right = 776.0
+margin_bottom = 94.0
+custom_fonts/font = SubResource( 1 )
+text = "PRESS THE JUMP KEY"
+align = 1
+valign = 1
+
+[node name="SelectVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SelectCenterContainer"]
+visible = false
+margin_left = 416.0
+margin_top = 22.0
+margin_right = 608.0
+margin_bottom = 134.0
+custom_constants/separation = 8
+
+[node name="start" type="Label" parent="MarginContainer/VBoxContainer/SelectCenterContainer/SelectVBoxContainer"]
+margin_right = 192.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "START"
+align = 1
+valign = 1
+
+[node name="option" type="Label" parent="MarginContainer/VBoxContainer/SelectCenterContainer/SelectVBoxContainer"]
+margin_top = 40.0
+margin_right = 192.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 1 )
+text = "OPTION"
+align = 1
+valign = 1
+
+[node name="exit" type="Label" parent="MarginContainer/VBoxContainer/SelectCenterContainer/SelectVBoxContainer"]
+margin_top = 80.0
+margin_right = 192.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 1 )
+text = "EXIT"
+align = 1
+valign = 1
+
+[node name="Select" type="AudioStreamPlayer2D" parent="MarginContainer/VBoxContainer/SelectCenterContainer"]
+stream = ExtResource( 7 )
+
+[node name="SelectPressed" type="AudioStreamPlayer2D" parent="MarginContainer/VBoxContainer/SelectCenterContainer"]
+stream = ExtResource( 6 )
+
+[node name="DelayTimer" type="Timer" parent="MarginContainer/VBoxContainer/SelectCenterContainer"]
+[connection signal="timeout" from="MarginContainer/VBoxContainer/SelectCenterContainer/DelayTimer" to="MarginContainer/VBoxContainer/SelectCenterContainer" method="_on_DelayTimer_timeout"]
