@@ -114,6 +114,9 @@ text = "Blah blah blah blah"
 
 [node name="items" type="Node2D" parent="."]
 
+[node name="SavePoint2" parent="items" instance=ExtResource( 5 )]
+position = Vector2( 192, 400 )
+
 [node name="SavePoint" parent="items" instance=ExtResource( 5 )]
 position = Vector2( 2256, 400 )
 
